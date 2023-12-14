@@ -3,7 +3,6 @@
     flex-direction: column;
     height: 100vh;
     background-image: url('../images/wall.png');
-    border: 5px solid green;
 }
 
 .menu {
@@ -57,4 +56,37 @@
 .menu-time h2:nth-child(2),
 .menu-score h2:nth-child(2) {
     margin-top: 1rem;
+}
+
+@media only screen and (max-width: 412px) {
+    .panel {
+        width: 100vw;
+        margin: 150px auto;
+    }
+
+    .square{
+        height: 120px;
+        width: 120px;
+        border: 2px solid #ffffff;
+        background-color: #58a68c;
+    }
+
+    .menu {
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+        height: 150px;
+        width: 100vw;
+        background-color: #000000;
+        color: #ffffff;
+        border-bottom: 5px solid #ffd700;
+        border-top: 5px solid #ffd700;
+    }
+
+    .menu-lives {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
