@@ -65,11 +65,9 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
                 playSound("hit");
-            }
-            else if (state.view.life.textContent > "1") {
+            } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
-            } else {
-                state.view.life.textContent = "0"
+            } else if (state.view.life.textContent = "0") {
                 alert("Game Over! Sua pontuação foi de: " + state.values.result)
                 location.reload()
             }
