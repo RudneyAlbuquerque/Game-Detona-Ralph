@@ -86,7 +86,7 @@ function addListenerHitBox() {
                 if(square.id !== state.values.hitPosition){
                     state.values.hitPosition = null;
                     square.classList.add("squareError"); 
-                    square.textContent = "|||||||||"
+                    square.textContent = "|||||||"
                     setTimeout(() => {
                         square.classList.remove("squareError")
                     }, 500);
@@ -95,7 +95,7 @@ function addListenerHitBox() {
                 }   
             } else if (state.view.life.textContent = "0") {
                 square.classList.add("squareError");
-                square.textContent = "|||||||||"
+                square.textContent = "|||||||"
                 gameOver();
                 //alert("Game Over! Sua pontuação foi de: " + state.values.result)
                 //location.reload()
