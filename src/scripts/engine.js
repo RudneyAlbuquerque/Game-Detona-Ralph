@@ -83,13 +83,27 @@ function addListenerHitBox() {
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
             } else if (state.view.life.textContent = "0") {
-                alert("Game Over! Sua pontuação foi de: " + state.values.result)
-                location.reload()
+                gameOver();
+                //alert("Game Over! Sua pontuação foi de: " + state.values.result)
+                //location.reload()
             }
                 
         });
     });
 }
+
+function gameOver(){
+    const imageUrl='./src/images/game over.png'
+    swal({
+      title: 'Que pena, você perdeu!',
+      text: 'O seu resultado foi: ' + state.values.result,
+      icon: imageUrl
+    })
+    .then(()=>{
+        window.location.reload();
+    })
+  }
+
 
 function initialize(){
     // moveEnemy();
