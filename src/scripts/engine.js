@@ -16,13 +16,13 @@ const state = {
         live: 3,
     },
     actions: {
-        timerId: setInterval(randomSquare, 1000),
+        //timerId: setInterval(randomSquare, 1000),
         countDownTimerId: setInterval(countDown, 1000),
         
     }
 
 }
-
+randomSquareAdd()
 function countDown() {
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
@@ -59,6 +59,13 @@ function randomSquareRemove(){
     })
 }
 
+function randomSquareAdd(){
+    let randomNumber = Math.floor(Math.random() * 9);
+    let randomSquare = state.view.squares[randomNumber];
+    randomSquare.classList.add("enemy");
+    state.values.hitPosition = randomSquare.id;
+}
+
 // function moveEnemy(){
 //     state.values.timerId = setInterval(randomSquare, state.values.gameVelocity)
 // }
@@ -71,6 +78,7 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
                 randomSquareRemove();
+                randomSquareAdd()
                 playSound("hit");
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
