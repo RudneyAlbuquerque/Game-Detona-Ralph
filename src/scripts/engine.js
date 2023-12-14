@@ -30,8 +30,9 @@ function countDown() {
     if (state.values.currentTime <= 0) {
         clearInterval(state.actions.countDownTimerId);
         clearInterval(state.actions.timerId);
-        alert("Game Over! Sua pontuação foi de: " + state.values.result)
-        location.reload()
+        endTime()
+        //alert("Game Over! Sua pontuação foi de: " + state.values.result)
+        //location.reload()
     }
 }
 
@@ -103,7 +104,17 @@ function gameOver(){
         window.location.reload();
     })
   }
-
+  function endTime(){
+    const imageUrl='./src/images/time.png'
+    swal({
+      title: 'Oops, acabou o tempo!',
+      text: 'O seu resultado foi: ' + state.values.result,
+      icon: imageUrl
+    })
+    .then(()=>{
+        window.location.reload();
+    })
+  }
 
 function initialize(){
     // moveEnemy();

@@ -58,6 +58,12 @@
     margin-top: 1rem;
 }
 
+.menu-time h2:nth-child(1),
+.menu-score h2:nth-child(1) {
+    margin-top: 1rem;
+    color: #ff0000;
+}
+
 @media only screen and (max-width: 430px) {
     .panel {
         width: 100vw;
