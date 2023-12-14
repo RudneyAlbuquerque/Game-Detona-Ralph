@@ -83,7 +83,19 @@ function addListenerHitBox() {
                 playSound("hit");
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
+                if(square.id !== state.values.hitPosition){
+                    state.values.hitPosition = null;
+                    square.classList.add("squareError"); 
+                    square.textContent = "|||||||||"
+                    setTimeout(() => {
+                        square.classList.remove("squareError")
+                    }, 500);
+                    randomSquareRemove();
+                    randomSquareAdd()
+                }   
             } else if (state.view.life.textContent = "0") {
+                square.classList.add("squareError");
+                square.textContent = "|||||||||"
                 gameOver();
                 //alert("Game Over! Sua pontuação foi de: " + state.values.result)
                 //location.reload()

@@ -33,6 +33,18 @@
     animation: fadeInOut 2s step-end;
 }
 
+@keyframes fadeInOut {
+    0% {opacity: 1;}
+    50% {opacity: 0.8;}
+    100% {opacity: 1;}
+}
+
+.squareError {
+    background-image: url('../images/chave.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .square{
     height: 150px;
     width: 150px;
@@ -41,11 +53,6 @@
 }
 
 
-@keyframes fadeInOut {
-    0% {opacity: 1;}
-    50% {opacity: 0.8;}
-    100% {opacity: 1;}
-}
 
 .menu-lives {
     display: flex;
