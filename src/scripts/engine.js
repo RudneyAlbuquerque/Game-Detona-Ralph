@@ -53,17 +53,24 @@ function randomSquare(){
     state.values.hitPosition = randomSquare.id;
 }
 
+function randomSquareRemove(){
+    state.view.squares.forEach((square) => {
+        square.classList.remove("enemy")
+    })
+}
+
 // function moveEnemy(){
 //     state.values.timerId = setInterval(randomSquare, state.values.gameVelocity)
 // }
 
 function addListenerHitBox() {
     state.view.squares.forEach((square) => {
-        square.addEventListener("click", () => {
+        square.addEventListener("mousedown", () => {
             if(square.id === state.values.hitPosition){
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
+                randomSquareRemove();
                 playSound("hit");
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
