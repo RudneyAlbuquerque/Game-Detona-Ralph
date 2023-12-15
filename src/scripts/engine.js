@@ -62,13 +62,13 @@ function randomSquare(){
             randomSquare.classList.add("enemy");
             state.values.hitPosition = randomSquare.id;
             
-        } else if (array[array.length - 1] == nextNumb && array[array.length - 1] < 8) {
+        } else if (randomNumber == nextNumb && randomNumber < 8) {
             nextNumb++
             array.push(nextNumb);
             randomSquare.classList.add("enemy");
             state.values.hitPosition = randomSquare.id;
 
-        } else if (array[array.length - 1] == nextNumb && array[array.length - 1] == 8) {
+        } else if (randomNumber == nextNumb && randomNumber == 8) {
             nextNumb--
             array.push(nextNumb);
             randomSquare.classList.add("enemy");
