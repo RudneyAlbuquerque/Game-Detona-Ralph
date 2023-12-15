@@ -33,6 +33,7 @@
     animation: fadeInOut 2s step-end;
 }
 
+
 @keyframes fadeInOut {
     0% {opacity: 1;}
     50% {opacity: 0.8;}
@@ -40,9 +41,11 @@
 }
 
 .squareError {
-    background-image: url('../images/chave.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+    color: #ff0000;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .square{

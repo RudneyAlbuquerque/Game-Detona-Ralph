@@ -43,15 +43,37 @@ function playSound(audioName){
     audio.play();
 }
 
+
+let array = [];
+array.push(Math.floor(Math.random() * 9));
+
 function randomSquare(){
     state.view.squares.forEach((square) => {
         square.classList.remove("enemy")
     })
 
-    let randomNumber = Math.floor(Math.random() * 9);
+    let randomNumber = array[array.length - 1];
     let randomSquare = state.view.squares[randomNumber];
-    randomSquare.classList.add("enemy");
-    state.values.hitPosition = randomSquare.id;
+    
+
+    let nextNumb = Math.floor(Math.random() * 9);
+        if (randomNumber != nextNumb) {
+            array.push(nextNumb);
+            randomSquare.classList.add("enemy");
+            state.values.hitPosition = randomSquare.id;
+            
+        } else if (array[array.length - 1] == nextNumb && array[array.length - 1] < 8) {
+            nextNumb++
+            array.push(nextNumb);
+            randomSquare.classList.add("enemy");
+            state.values.hitPosition = randomSquare.id;
+
+        } else if (array[array.length - 1] == nextNumb && array[array.length - 1] == 8) {
+            nextNumb--
+            array.push(nextNumb);
+            randomSquare.classList.add("enemy");
+            state.values.hitPosition = randomSquare.id;
+        }
 }
 
 function randomSquareRemove(){
@@ -78,24 +100,27 @@ function addListenerHitBox() {
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
-                randomSquareRemove();
-                randomSquareAdd()
+                randomSquare()
+                //randomSquareRemove();
+                //randomSquareAdd()
                 playSound("hit");
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
                 if(square.id !== state.values.hitPosition){
                     state.values.hitPosition = null;
                     square.classList.add("squareError"); 
-                    square.textContent = "|||||||"
+                    square.textContent = "X"
                     setTimeout(() => {
                         square.classList.remove("squareError")
+                        square.textContent = ""
                     }, 500);
-                    randomSquareRemove();
-                    randomSquareAdd()
+                    randomSquare()
+                //randomSquareRemove();
+                //randomSquareAdd()
                 }   
             } else if (state.view.life.textContent = "0") {
                 square.classList.add("squareError");
-                square.textContent = "|||||||"
+                square.textContent = "X"
                 gameOver();
                 //alert("Game Over! Sua pontuação foi de: " + state.values.result)
                 //location.reload()
