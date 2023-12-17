@@ -22,7 +22,7 @@ const state = {
     }
 
 }
-randomSquareAdd()
+
 function countDown() {
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
@@ -43,54 +43,61 @@ function playSound(audioName){
     audio.play();
 }
 
-
 let array = [];
-array.push(Math.floor(Math.random() * 9));
 
-function randomSquare(){
-    state.view.squares.forEach((square) => {
-        square.classList.remove("enemy")
-    })
-
-    let randomNumber = array[array.length - 1];
-    let randomSquare = state.view.squares[randomNumber];
-    
-
-    let nextNumb = Math.floor(Math.random() * 9);
-        if (randomNumber != nextNumb) {
-            array.push(nextNumb);
-            randomSquare.classList.add("enemy");
-            state.values.hitPosition = randomSquare.id;
-            
-        } else if (randomNumber == nextNumb && randomNumber < 8) {
-            nextNumb++
-            array.push(nextNumb);
-            randomSquare.classList.add("enemy");
-            state.values.hitPosition = randomSquare.id;
-
-        } else if (randomNumber == nextNumb && randomNumber == 8) {
-            nextNumb--
-            array.push(nextNumb);
-            randomSquare.classList.add("enemy");
-            state.values.hitPosition = randomSquare.id;
-        }
+function getRandomNumber() {
+    let randomNumber;
+    do {
+        randomNumber = Math.floor(Math.random() * 9);
+    } while (randomNumber == array[array.length - 1]);
+    array.push(randomNumber);
+   return randomNumber;
 }
 
-function randomSquareRemove(){
+function randomSquare() {
     state.view.squares.forEach((square) => {
-        square.classList.remove("enemy")
-    })
-}
+        square.classList.remove("enemy");
+    });
 
-function randomSquareAdd(){
-    let randomNumber = Math.floor(Math.random() * 9);
-    let randomSquare = state.view.squares[randomNumber];
+    let nextNumb;
+    let randomSquare;
+
+    nextNumb = getRandomNumber();
+    randomSquare = state.view.squares[nextNumb];
     randomSquare.classList.add("enemy");
     state.values.hitPosition = randomSquare.id;
 }
 
-// function moveEnemy(){
-//     state.values.timerId = setInterval(randomSquare, state.values.gameVelocity)
+// let array = [];
+// array.push(Math.floor(Math.random() * 9));
+
+// function randomSquare(){
+//     state.view.squares.forEach((square) => {
+//         square.classList.remove("enemy")
+//     })
+
+//     let randomNumber = array[array.length - 1];
+//     let randomSquare = state.view.squares[randomNumber];
+    
+
+//     let nextNumb = Math.floor(Math.random() * 9);
+//         if (randomNumber != nextNumb) {
+//             array.push(nextNumb);
+//             randomSquare.classList.add("enemy");
+//             state.values.hitPosition = randomSquare.id;
+            
+//         } else if (randomNumber == nextNumb && randomNumber < 8) {
+//             nextNumb++
+//             array.push(nextNumb);
+//             randomSquare.classList.add("enemy");
+//             state.values.hitPosition = randomSquare.id;
+
+//         } else if (randomNumber == nextNumb && randomNumber == 8) {
+//             nextNumb--
+//             array.push(nextNumb);
+//             randomSquare.classList.add("enemy");
+//             state.values.hitPosition = randomSquare.id;
+//         }
 // }
 
 function addListenerHitBox() {
@@ -101,8 +108,6 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
                 randomSquare()
-                //randomSquareRemove();
-                //randomSquareAdd()
                 playSound("hit");
             } else if (state.view.life.textContent > "1") {
                 state.view.life.textContent--
@@ -115,8 +120,6 @@ function addListenerHitBox() {
                         square.textContent = ""
                     }, 500);
                     randomSquare()
-                //randomSquareRemove();
-                //randomSquareAdd()
                 }   
             } else if (state.view.life.textContent = "0") {
                 square.classList.add("squareError");
@@ -155,6 +158,7 @@ function gameOver(){
 
 function initialize(){
     // moveEnemy();
+    randomSquare();
     addListenerHitBox();
     countDown()
 }
